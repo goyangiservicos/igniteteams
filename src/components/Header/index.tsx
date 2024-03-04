@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { Container, Logo, BackButton, BackIcon } from "./styles";
 import logoImg from "@assets/logo.png";
 
@@ -6,10 +7,15 @@ type props = {
 };
 
 export function Header({ showBackButton = false }: props) {
+  const nativation = useNavigation();
+
+  function hendleGoBack() {
+    nativation.navigate("groups");
+  }
   return (
     <Container>
       {showBackButton && ( // se showBackButton for verdadeiro "&&" mostra o BackIcon
-        <BackButton>
+        <BackButton onPress={hendleGoBack}>
           <BackIcon />
         </BackButton>
       )}
